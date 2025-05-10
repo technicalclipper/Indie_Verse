@@ -1,103 +1,153 @@
-import Image from "next/image";
+"use client";
+import { useAccount, useConnect, useDisconnect, useEnsAvatar, useEnsName } from "wagmi";
+import { injected, metaMask, walletConnect } from "wagmi/connectors";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  return( <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      minHeight: "100vh",
+      width: "100%",
+      background: "linear-gradient(to bottom, #f8f5f0 50%, #f1deac 100%)",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      margin: 0,
+      padding: 0,
+      
+    }}
+  >
+    <div
+      style={{
+        width: "90%",
+        height: "95vh",
+        border: "5px solid black",
+        margin: "20px",
+        padding: "20px",
+        boxSizing: "border-box",
+        borderRadius: "10px",
+        background: "#fff",
+      }}
+    >
+      <main>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "60px",
+            gap: "50px",
+            height: "100vh",
+          }}
+        >
+          {/* Left Side: Cards Section */}
+          <section style={{ display: "flex", flexDirection: "column", gap: "25px", flex: 1, marginTop: "100px" }}>
+            {[
+              {
+                img: "images/image1.jpg",
+                title: "Explore Indie Artists",
+                text: "Many talented independent artists who are yet to experience the limelight and their art of music can be found and explored here.",
+              },
+              {
+                img: "images/image2.jpg",
+                title: "Secure contracts with NFTs",
+                text: "NFTs will be minted and transferred to the artists as well as the record label once the contract is established.",
+              },
+              {
+                img: "images/image3.jpg",
+                title: "Transparent payments",
+                text: "The payment of the artists will be fully transparent. Artists will be rewarded every penny which they earn.",
+              },
+            ].map((card, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "#d4a373",
+                  padding: "20px",
+                  borderRadius: "15px",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                  textAlign: "center",
+                  width: "320px",
+                  transition: "transform 0.3s",
+                  marginLeft: index === 0 ? "300px" : index === 1 ? "30px" : "400px",
+                  marginTop: index === 0 ? "200px" : index === 2 ? "-10px" : "0",
+                }}
+              >
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "10px" }}
+                />
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </div>
+            ))}
+          </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* 3D Vertical Divider */}
+          <div
+            style={{
+              width: "8px",
+              height: "80vh",
+              background: "linear-gradient(to bottom, #999, #444)",
+              boxShadow: "2px 0 6px rgba(0, 0, 0, 0.3)",
+              borderRadius: "10px",
+            }}
+          ></div>
+
+          {/* Right Side: About Section */}
+          <section style={{ flex: 1, maxWidth: "500px", paddingLeft: "20px",marginBottom: "100px" }}>
+            <h1 style={{ fontSize: "70px", fontWeight: "lighter", textShadow: "1.5px 1.5px 3px grey" }}>
+              REDEFINING THE INDIE SCENE
+            </h1>
+            <p style={{ color: "#555", fontSize: "28px" }}>
+              Signify is a revolutionary Web3-powered platform designed to transform the music industry by ensuring
+              secure and transparent transactions between artists and record labels. By leveraging blockchain
+              technology, Signify empowers independent artists to showcase their talent, gain visibility, and receive
+              direct engagement from fans and industry professionals.
+            </p>
+          </section>
         </div>
+
+        {/* Box Section */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "25px", flex: 1,marginTop: "140px" }}>
+          {["images/retro1.jpg", "images/retro2.jpg", "images/retro3.jpg"].map((img, index) => (
+            <div
+              key={index}
+              style={{
+                width: index === 2 ? "370px" : index === 1 ? "260px" : "230px",
+                height: index === 2 ? "280px" : index === 1 ? "380px" : "350px",
+                background: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                transition: "transform 0.3s, background 0.3s",
+                zIndex: "10",
+                transform: index === 0 ? "rotate(-10deg)" : index === 1 ? "rotate(15deg)" : "rotate(-5deg)",
+                marginTop: index === 0 ? "-1000px" : index === 1 ? "-10px" : "70px",
+                marginLeft: index === 0 ? "20px" : index === 1 ? "600px" : "25px",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = index === 0 ? "rotate(-5deg) scale(1.1)" : index === 1 ? "rotate(10deg) scale(1.1)" : "rotate(0deg) scale(1.1)";
+                e.currentTarget.style.background = "#ff9900";
+                e.currentTarget.style.color = "white";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = index === 0 ? "rotate(-10deg)" : index === 1 ? "rotate(15deg)" : "rotate(-5deg)";
+                e.currentTarget.style.background = "#ffffff";
+                e.currentTarget.style.color = "#333";
+              }}
+            >
+              <img src={img} alt="Retro Art" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "5px" }} />
+            </div>
+          ))}
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  </div>)
 }
+
+
