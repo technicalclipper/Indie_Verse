@@ -1,0 +1,150 @@
+.container {
+    display: flex;
+    width: 96vw;
+    height: 85vh;
+    margin: 2vh 2vw;
+    gap: 20px;
+  }
+  
+  .leftPanel, .rightPanel {
+    box-sizing: border-box;
+    padding: 20px;
+    border: 4px solid black;
+    border-radius: 20px;
+    background-color: #f5f1e8;
+    overflow-y: auto;
+  }
+  
+  .leftPanel {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .rightPanel {
+    width: 60%;
+  }
+  
+  .heading {
+    font-size: 3.3em;
+    font-weight: bold;
+    color: #cdb53e;
+    margin-bottom: 14px;
+  }
+  
+  .descriptionContent {
+    flex-grow: 1;
+  }
+  
+  .descriptionHeading {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 12px;
+    
+    
+  }
+  
+  .descriptionText {
+    font-size: 1.4em;
+    line-height: 1.6;
+    margin-top: 20px;
+    
+  }
+  
+  .uploadForm {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    
+  }
+  
+  .fileInput {
+    background-color: white;
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 15px;
+    border: 3px solid black;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 4px 4px 0px black;
+    height: 70px;
+  }
+  
+  .fileInput:hover {
+    background-color: #ddd;
+  }
+  
+  .fileUploaded {
+    background-color: lightgreen;
+  }
+  
+  .inputField,
+  .textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
+    border: 3px solid black;
+    font-size: 22px;
+    background-color: white;
+    box-shadow: 4px 4px 0px black;
+  }
+  
+  .textarea {
+    resize: none;
+    height: 120px;
+  }
+  
+  .uploadButton {
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    border: 3px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 4px 4px 0px black;
+  }
+  
+  .uploadButton:hover {
+    background-color: gray;
+  }
+  
+  .uploadSuccess {
+    background-color: lightgreen;
+  }
+  .typewriter {
+    
+   
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid black;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 1.3s steps(30, end) forwards, blink 0.6s steps(2, start) 1.6s forwards;
+  }
+  
+  /* Typing animation */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 13.2ch; /* Adjust based on text length */
+    }
+  }
+  
+  /* Blinking cursor, disappears after typing ends */
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+    100% {
+      border-color: transparent;
+    }
+  }
+  
